@@ -16,8 +16,7 @@ http://www.ois-yokohama.co.jp/oisblog/archives/248
    バーチャルボックスの共有フォルダで/var/www/htmlをしてい
    C:\Users\k-nishiyama\Vagrant\centos01
    var/www/html
-   
-   
+
 
 git clone https://github.com/248/laravel.git
 curl -s http://getcomposer.org/installer | php
@@ -30,4 +29,7 @@ git commit -m "install laravel"
 $ vi .git/config
 url = https://アカウント名@github.com/yk5656/sample.git
 
+chmod -R 777 server_app/storage/
+
+ここまででつながっている
    
