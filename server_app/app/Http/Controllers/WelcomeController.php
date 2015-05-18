@@ -35,7 +35,8 @@ class WelcomeController extends Controller {
 
     public function contact()  // 追加
     {
-        return "contact";  // (a) view 関数を使わず、テキストを返してみる
+        // return "contact";  // (a) view 関数を使わず、テキストを返してみる
+        return view("contact");
     }
 
 }
