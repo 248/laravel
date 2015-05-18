@@ -13,7 +13,9 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('contact', 'WelcomeController@contact');   // 追加
+Route::get('contact', 'WelcomeController@contact');
+
+Route::get('about', 'PagesController@about');
 // Route::get('home', 'HomeController@index');
 
 Route::controllers([
