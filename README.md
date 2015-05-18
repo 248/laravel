@@ -32,4 +32,10 @@ url = https://アカウント名@github.com/yk5656/sample.git
 chmod -R 777 server_app/storage/
 
 ここまででつながっている
-   
+
+ 247  git clone https://github.com/248/laravel.git
+  263  git add .
+  264  git status
+  265  git commit -m "install laravel"
+  266  git push origin master
+
