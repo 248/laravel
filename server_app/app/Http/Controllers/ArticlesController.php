@@ -3,9 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 use App\Article;
+// use App\Http\Requests\ArticleRequest;
 
 class ArticlesController extends Controller {
 
@@ -19,23 +20,8 @@ class ArticlesController extends Controller {
 		return view('articles.create');
 	}
 
-	public function store(Request $request) {
-  //       // ①フォームの入力値を取得
-		// $inputs = \Request::all();
-
-  //       // ②マスアサインメントを使って、記事をDBに作成
-		// Article::create($inputs);
-
-		$rules = [    // ②
-		'title' => 'required|min:3',
-		'body' => 'required',
-		'published_at' => 'required|date',
-		];
-		$this->validate($request, $rules);  // ③
-
+	public function store(Requests\ArticleRequest $request) {
 		Article::create($request->all());
-
-		// ③記事一覧へリダイレクト
 		return redirect('articles');
 	}
 
