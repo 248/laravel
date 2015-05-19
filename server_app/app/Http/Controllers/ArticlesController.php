@@ -8,10 +8,15 @@ use App\Http\Controllers\Controller;
 use App\Article;
 // use App\Http\Requests\ArticleRequest;
 
+use Carbon\Carbon;
+
 class ArticlesController extends Controller {
 
 	public function index() {
-		$articles = Article::all();
+		// $articles = Article::all();  古いコード
+		// $articles = Article::where('published_at', '<=', Carbon::now())->orderBy('published_at', 'asc')->get();
+		// $articles = Article::latest('published_at')->get();
+		$articles = Article::published()->orderBy('published_at', 'asc')->get();
 
 		return view('articles.index', compact('articles'));
 	}
