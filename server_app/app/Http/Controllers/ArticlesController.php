@@ -55,7 +55,7 @@ class ArticlesController extends Controller {
 		$article = Article::findOrFail($id);
 
 		$article->delete();
-
+		\Session::flash('flash_message', '記事を削除しました。');
 		return redirect('articles');
 	}
 }
