@@ -1,0 +1,9 @@
+// resources/views/errors/form_errors.blade.php
+
+@if ($errors->any())
+    <ul class="alert alert-danger">
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
