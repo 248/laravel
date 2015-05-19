@@ -39,7 +39,7 @@ return [
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Asia/Tokyo',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -145,6 +145,7 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		'Illuminate\Html\HtmlServiceProvider', // 追加
 	],
 
 	/*
@@ -193,6 +194,8 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+		'Form' => 'Illuminate\Html\FormFacade',  // 追加
+        'Html' => 'Illuminate\Html\HtmlFacade',  // 追加
 	],
 
 ];

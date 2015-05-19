@@ -18,7 +18,9 @@ Route::get('contact', 'WelcomeController@contact');
 Route::get('about', 'PagesController@about');
 
 Route::get('articles', 'ArticlesController@index');
+Route::get('articles/create', 'ArticlesController@create'); // ルートは記述順にマッチングされるため
 Route::get('articles/{id}', 'ArticlesController@show');
+Route::post('articles', 'ArticlesController@store');
 
 // Route::get('home', 'HomeController@index');
 
