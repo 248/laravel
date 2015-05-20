@@ -17,6 +17,7 @@ Route::get('contact', 'WelcomeController@contact');
 
 Route::get('about', 'PagesController@about');
 
+Route::get('/', 'ArticlesController@index');  // root を記事一覧にします
 Route::resource('articles', 'ArticlesController');
 
 // Route::get('articles', 'ArticlesController@index');
