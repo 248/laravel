@@ -1,6 +1,5 @@
 <?php namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model {
@@ -14,9 +13,13 @@ class Article extends Model {
 		return $this->belongsTo('App\User');
 	}
 
+	public function tags() {
+		return $this->belongsToMany('App\Tag')->withTimestamps();
+	}
+
 	//  published scopeを定義
 	public function scopePublished($query) {
-		$query->where('published_at', '<=', Carbon::now());
+		$query->where('published_at', '<=', Carbon\Carbon::now());
 	}
 
 	public function getTitleAttribute($value)
