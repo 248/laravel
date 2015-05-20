@@ -37,21 +37,21 @@ class ArticlesController extends Controller {
 		return redirect()->route('articles.index');
 	}
 
-	public function show($id) {
+	public function show(Article $article) {
 		// return $id;
-		$article = Article::findOrFail($id);
+		// $article = Article::findOrFail($id);
 
 		return view('articles.show', compact('article'));
 	}
 
-	public function edit($id) {
-		$article = Article::findOrFail($id);
+	public function edit(Article $article) {
+		// $article = Article::findOrFail($id);
 
 		return view('articles.edit', compact('article'));
 	}
 
-	public function update($id, Requests\ArticleRequest $request) {
-		$article = Article::findOrFail($id);
+	public function update(Article $article, Requests\ArticleRequest $request) {
+		// $article = Article::findOrFail($id);
 
 		$article->update($request->all());
 
@@ -59,8 +59,8 @@ class ArticlesController extends Controller {
 		return redirect()->route('articles.show', [$article->id]);
 	}
 
-	public function destroy($id) {
-		$article = Article::findOrFail($id);
+	public function destroy(Article $article) {
+		// $article = Article::findOrFail($id);
 
 		$article->delete();
 		\Session::flash('flash_message', '記事を削除しました。');
