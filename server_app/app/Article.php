@@ -10,6 +10,10 @@ class Article extends Model {
 	// published_at も日付ミューテーター使います。よろしく
 	protected $dates = ['published_at'];
 
+	public function user() {
+		return $this->belongsTo('App\User');
+	}
+
 	//  published scopeを定義
 	public function scopePublished($query) {
 		$query->where('published_at', '<=', Carbon::now());

@@ -13,8 +13,9 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
+
+		$this->call('UsersTableSeeder'); // この順番で実行される
 		$this->call('ArticlesTableSeeder');
-		// $this->call('UserTableSeeder');
 	}
 
 }
