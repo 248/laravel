@@ -146,6 +146,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 
 		'Illuminate\Html\HtmlServiceProvider', // 追加
+		// 'Cartalyst\Sentry\SentryServiceProvider', // add
 	],
 
 	/*
@@ -196,6 +197,7 @@ return [
 
 		'Form' => 'Illuminate\Html\FormFacade',  // 追加
         'Html' => 'Illuminate\Html\HtmlFacade',  // 追加
+        // 'Sentry'  => 'Cartalyst\Sentry\Facades\Laravel\Sentry', // add
 	],
 
 ];
