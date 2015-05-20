@@ -26,12 +26,14 @@ class ArticlesController extends Controller {
 	}
 
 	public function create() {
-		return view('articles.create');
+		$tags = Tag::lists('name', 'id');
+		return view('articles.create', compact('tags'));
 	}
 
 	public function store(Requests\ArticleRequest $request) {
 		// Article::create($request->all());
 		\Auth::user()->articles()->create($request->all());
+		$articles->tags()->attach($request->input('tag_list'));
 		\Session::flash('flash_message', '記事を追加しました。');
 		// return redirect('articles');
 		return redirect()->route('articles.index');
@@ -46,15 +48,17 @@ class ArticlesController extends Controller {
 
 	public function edit(Article $article) {
 		// $article = Article::findOrFail($id);
+		$tags = Tag::lists('name', 'id');
 
-		return view('articles.edit', compact('article'));
+		return view('articles.edit', compact('article', 'tags'));
 	}
 
 	public function update(Article $article, Requests\ArticleRequest $request) {
 		// $article = Article::findOrFail($id);
 
 		$article->update($request->all());
-
+		$article->tags()->sync($request->input('tag_list'));
+		\Session::flash('flash_message', '記事を更新しました。');
 		// return redirect(url('articles', [$article->id]));
 		return redirect()->route('articles.show', [$article->id]);
 	}

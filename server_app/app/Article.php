@@ -1,7 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class Article extends Model {
 
 	protected $fillable = ['title', 'body', 'published_at'];
@@ -17,9 +17,13 @@ class Article extends Model {
 		return $this->belongsToMany('App\Tag')->withTimestamps();
 	}
 
+	public function getTagListAttribute() {
+		return $this->tags->lists('id');
+	}
+
 	//  published scopeを定義
 	public function scopePublished($query) {
-		$query->where('published_at', '<=', Carbon\Carbon::now());
+		$query->where('published_at', '<=', Carbon::now());
 	}
 
 	public function getTitleAttribute($value)
