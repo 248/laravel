@@ -1,4 +1,4 @@
-// resouces/views/articles/index.blade.php
+{{-- resources/views/articles/index.blade.php --}}
 
 @extends('layout')
 
@@ -7,7 +7,10 @@
 
     <hr/>
 
+    {{-- ログインしている時だけ表示 --}}
+    @if (Auth::check())
     {!! link_to('articles/create', '新規作成', ['class' => 'btn btn-primary']) !!}
+    @endif
 
     @foreach($articles as $article)
         <article>

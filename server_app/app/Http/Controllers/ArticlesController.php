@@ -12,6 +12,10 @@ use Carbon\Carbon;
 
 class ArticlesController extends Controller {
 
+	function __construct(){
+		$this->middleware('auth', ['except' => ['index', 'show']]);
+	}
+
 	public function index() {
 		// $articles = Article::all();  古いコード
 		// $articles = Article::where('published_at', '<=', Carbon::now())->orderBy('published_at', 'asc')->get();
