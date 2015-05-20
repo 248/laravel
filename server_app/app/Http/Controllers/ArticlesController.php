@@ -16,7 +16,7 @@ class ArticlesController extends Controller {
 		// $articles = Article::all();  古いコード
 		// $articles = Article::where('published_at', '<=', Carbon::now())->orderBy('published_at', 'asc')->get();
 		// $articles = Article::latest('published_at')->get();
-		$articles = Article::published()->orderBy('published_at', 'asc')->get();
+		$articles = Article::published()->orderBy('published_at', 'desc')->get();
 
 		return view('articles.index', compact('articles'));
 	}
@@ -27,7 +27,8 @@ class ArticlesController extends Controller {
 
 	public function store(Requests\ArticleRequest $request) {
 		Article::create($request->all());
-		return redirect('articles');
+		// return redirect('articles');
+		return redirect()->route('articles.index');
 	}
 
 	public function show($id) {
@@ -48,7 +49,8 @@ class ArticlesController extends Controller {
 
 		$article->update($request->all());
 
-		return redirect(url('articles', [$article->id]));
+		// return redirect(url('articles', [$article->id]));
+		return redirect()->route('articles.show', [$article->id]);
 	}
 
 	public function destroy($id) {
@@ -56,6 +58,7 @@ class ArticlesController extends Controller {
 
 		$article->delete();
 		\Session::flash('flash_message', '記事を削除しました。');
-		return redirect('articles');
+		// return redirect('articles');
+		return redirect()->route('articles.index');
 	}
 }
