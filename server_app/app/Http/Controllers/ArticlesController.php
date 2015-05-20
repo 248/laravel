@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 // use Illuminate\Http\Request;
 
 use App\Article;
+use App\Tag;
 // use App\Http\Requests\ArticleRequest;
 
 use Carbon\Carbon;
@@ -32,7 +33,7 @@ class ArticlesController extends Controller {
 
 	public function store(Requests\ArticleRequest $request) {
 		// Article::create($request->all());
-		\Auth::user()->articles()->create($request->all());
+		$articles = \Auth::user()->articles()->create($request->all());
 		$articles->tags()->attach($request->input('tag_list'));
 		\Session::flash('flash_message', '記事を追加しました。');
 		// return redirect('articles');
