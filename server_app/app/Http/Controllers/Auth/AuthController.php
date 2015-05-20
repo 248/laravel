@@ -20,6 +20,8 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
+	protected $redirectTo = '/articles';    // 追加。登録後やログイン後のリダイレクト先
+
 	/**
 	 * Create a new authentication controller instance.
 	 *

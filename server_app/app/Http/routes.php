@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
+// Route::get('/', 'WelcomeController@index');
+// Route::get('home', 'HomeController@index');
 Route::get('contact', 'WelcomeController@contact');
 
 Route::get('about', 'PagesController@about');
@@ -36,7 +36,7 @@ Route::resource('articles', 'ArticlesController');
 // Route::patch('articles/{id}', ['as' => 'articles.update', 'uses' => 'ArticlesController@update']);
 // Route::delete('articles/{id}', ['as' => 'articles.destroy', 'uses' => 'ArticlesController@destroy']);
 
-// Route::get('home', 'HomeController@index');
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
