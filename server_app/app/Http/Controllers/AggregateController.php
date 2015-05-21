@@ -21,6 +21,7 @@ class AggregateController extends Controller {
 	{
 		$input = $request->all();
 		// dd($input);
+		\Csv::test();
 		return view('aggregate.index');
 	}
 

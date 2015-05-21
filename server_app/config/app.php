@@ -147,6 +147,7 @@ return [
 
 		'Illuminate\Html\HtmlServiceProvider', // 追加
 		// 'Cartalyst\Sentry\SentryServiceProvider', // add
+		'App\Providers\CsvServiceProvider', // 追加
 	],
 
 	/*
@@ -198,6 +199,7 @@ return [
 		'Form' => 'Illuminate\Html\FormFacade',  // 追加
         'Html' => 'Illuminate\Html\HtmlFacade',  // 追加
         // 'Sentry'  => 'Cartalyst\Sentry\Facades\Laravel\Sentry', // add
+        'Csv'     => 'App\Facades\CsvFacade',
 	],
 
 ];
