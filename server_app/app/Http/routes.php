@@ -17,6 +17,10 @@ Route::get('contact', 'WelcomeController@contact');
 
 Route::get('about', 'PagesController@about');
 
+Route::resource('aggregate', 'AggregateController');
+Route::post('aggregate', 'AggregateController@search');
+
+
 Route::get('/', 'ArticlesController@index');  // root を記事一覧にします
 Route::resource('articles', 'ArticlesController');
 

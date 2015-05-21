@@ -1,5 +1,3 @@
-// resources/views/articles/form.blade.php
-
 <div class="form-group">
     {!! Form::label('title', 'Title:') !!}
     {!! Form::text('title', null, ['class' => 'form-control']) !!}

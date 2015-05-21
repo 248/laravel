@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class ArticleRequest extends Request {
+class AggregateRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -21,11 +21,9 @@ class ArticleRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [  // ②
-		'title' => 'required|min:3',
-		'body' => 'required',
-		'published_at' => 'required|date',
-		'tag_list' => 'required',
+		return [
+		'start' => 'required|date',
+		'end' => 'required|date',
 		];
 	}
 
