@@ -17,7 +17,9 @@ Route::get('contact', 'WelcomeController@contact');
 
 Route::get('about', 'PagesController@about');
 
-Route::resource('aggregate', 'AggregateController');
+// Route::resource('aggregate', 'AggregateController');
+Route::get('aggregate', 'AggregateController@index');
+Route::get('aggregate/test', 'AggregateController@test');
 Route::post('aggregate', 'AggregateController@search');
 
 

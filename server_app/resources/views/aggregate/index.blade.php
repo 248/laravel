@@ -5,10 +5,16 @@
 
 @include('errors.form_errors')
 
+@if (!empty($error))
+<ul class="alert alert-danger">
+    <li>{{ $error }}</li>
+</ul>
+@endif
+
 <hr/>
 <div class="row">
     <div class="col-sm-9">
-    {!! Form::open(['url' => 'aggregate']) !!}
+        {!! Form::open(['url' => 'aggregate']) !!}
 
         <div class="form-group">
             <label class="col-sm-2 control-label">type</label>
@@ -33,8 +39,11 @@
                 {!! Form::submit('search', ['class' => 'btn btn-default']) !!}
             </div>
         </div>
+        {!! Form::close() !!}
     </div>
+
 </div>
 
-{!! Form::close() !!}
-@stop
+
+
+  @stop

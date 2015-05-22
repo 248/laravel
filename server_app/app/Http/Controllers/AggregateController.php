@@ -19,11 +19,30 @@ class AggregateController extends Controller {
 
 	public function search(Requests\AggregateRequest $request)
 	{
+		$error = null;
 		$input = $request->all();
-		// dd($input);
-		\Csv::test();
-		return view('aggregate.index');
+		
+		$fileList = \Csv::getFileList($input["type"], $input["start"], $input["end"]);
+// var_dump($input);
+		$data = array();
+		$aggregate = new \App\MyLibs\Aggregate();
+		foreach ($fileList as $key => $value) 
+		{
+			if (!file_exists("/vagrant/".$value)) {
+				$error = "検索対象外の月が含まれています";
+				break;
+			}
+			$aggregate->setCsv("/vagrant/".$value)->foming();
+		}
+		$data = $aggregate->create($input["start"], $input["end"])->get();
+// var_dump($data);
+		// var_dump(\Csv::read("/vagrant/sales_.csv"));
+		return view('aggregate.index',compact('error','data'));
 	}
 
+	public function test()
+	{
+		return view('aggregate.search');
+	}
 
 }
