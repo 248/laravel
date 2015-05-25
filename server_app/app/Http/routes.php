@@ -12,19 +12,20 @@
 */
 
 // Route::get('/', 'WelcomeController@index');
-Route::get('home', 'HomeController@index');
-Route::get('contact', 'WelcomeController@contact');
+// Route::get('home', 'HomeController@index');
+// Route::get('contact', 'WelcomeController@contact');
 
-Route::get('about', 'PagesController@about');
+// Route::get('about', 'PagesController@about');
 
-// Route::resource('aggregate', 'AggregateController');
+Route::get('/', 'AggregateController@index');
+Route::resource('aggregate', 'AggregateController');
 Route::get('aggregate', 'AggregateController@index');
 Route::get('aggregate/test', 'AggregateController@test');
 Route::post('aggregate', 'AggregateController@search');
 
 
-Route::get('/', 'ArticlesController@index');  // root を記事一覧にします
-Route::resource('articles', 'ArticlesController');
+// Route::get('/', 'ArticlesController@index');  // root を記事一覧にします
+// Route::resource('articles', 'ArticlesController');
 
 // Route::get('articles', 'ArticlesController@index');
 // Route::get('articles/create', 'ArticlesController@create'); // ルートは記述順にマッチングされるため

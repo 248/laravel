@@ -28,16 +28,20 @@ class AggregateController extends Controller {
 		$aggregate = new \App\MyLibs\Aggregate();
 		foreach ($fileList as $key => $value) 
 		{
-			if (!file_exists("/vagrant/".$value)) {
-				$error = "検索対象外の月が含まれています";
+			if (!file_exists(config('system.aggregate_file_pass').$value)) {
+				$error = "検索対象外のデータが含まれています。";
 				break;
 			}
-			$aggregate->setCsv("/vagrant/".$value)->foming();
+			$aggregate->setCsv(config('system.aggregate_file_pass').$value)->foming();
 		}
 		$data = $aggregate->create($input["start"], $input["end"])->get();
+
+		$header = $data[0];
+		unset($data[0]);
+
 // var_dump($data);
 		// var_dump(\Csv::read("/vagrant/sales_.csv"));
-		return view('aggregate.index',compact('error','data'));
+		return view('aggregate.index',compact('error','header','data'));
 	}
 
 	public function test()

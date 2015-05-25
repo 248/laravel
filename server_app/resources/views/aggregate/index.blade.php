@@ -41,9 +41,49 @@
         </div>
         {!! Form::close() !!}
     </div>
+</div>
 
+<br/>
+
+@if (!empty($data))
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <table id="sample" class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        @foreach ($header as $value)
+                        <th>{{ $value }}.</th>
+                        @endforeach
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach ($data as $store)
+                    <tr>
+                        @foreach ($store as $value)
+                        <th>{{ $value }}</th>
+                        @endforeach
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="DT_bootstrap.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
 
-  @stop
+<script src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $('table#sample').dataTable();
+</script>
+@endif
+
+@stop
