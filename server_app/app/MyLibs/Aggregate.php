@@ -22,6 +22,8 @@ class Aggregate
 	private $fileName = "";
 	private $dayCnt = 0;
 
+	private $storeList = array();
+
 	// function __construct($fileName)
 	// {
 	// 	if (file_exists($fileName)) {
@@ -70,6 +72,11 @@ class Aggregate
 				"name" => $value[3],
 				);
 			$this->foming[$year][$month][$value[1]] = $count;
+
+			if(in_array($value[1],$this->storeList))
+				continue;
+
+			$this->storeList[] = $value[1];
 		}
 
 		return $this;
@@ -97,6 +104,9 @@ class Aggregate
 
 	private function createStoreData($start, $end)
 	{
+		$tmp = explode("_", $this->fileName);
+		$targetMonth = (int)substr($tmp[1], 4, 2);
+
 		$storeData = array();
 		foreach ($this->foming as $year => $monthly) 
 		{
@@ -105,15 +115,32 @@ class Aggregate
 				list($min, $max) = $this->search($year.$month, $start, $end);
 
 				foreach ($store as $storeId => $daily) {
-					foreach ($daily as $day => $cnt) {
+					$dayCount = 0;
+					foreach ($daily as $day => $cnt) 
+					{
+						// 配列と日付を合わせる
+						$day++;
 						if($min <= $day && $day <= $max)
 						{
 							$storeData[$storeId][] = $cnt;
+							$dayCount++;
 						}
+					}
+				}
+
+				// 抜けてる店舗を穴埋め
+				$storeDiff = array_diff($this->storeList, array_keys($store));
+				foreach ($storeDiff as $storeId) {
+					echo $dayCount;
+					echo $storeId;
+					echo $month;
+					for ($i=0; $i < $dayCount; $i++) { 
+						$storeData[$storeId][] = 0;
 					}
 				}
 			}
 		}
+
 		return $storeData;
 	}
 
