@@ -123,3 +123,26 @@ php artisan make:request AggregateRequest
 これを参考にビジネスロジックとかの追加をしていこう
 http://qiita.com/niiyz/items/83770cfa6d6bb33c10ab
 php artisan make:provider CsvServiceProvider
+
+publicのhtaccessに下記を記載してIP制限
+<pre>
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+    # Redirect Trailing Slashes...
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+order deny,allow
+deny from all
+allow from 202.143.92.128/26
+</pre>
