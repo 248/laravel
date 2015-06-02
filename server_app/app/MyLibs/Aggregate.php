@@ -84,12 +84,16 @@ class Aggregate
 
 	public function create($start, $end)
 	{
-		$this->header = array_merge($this->header,$this->createWeek($start, $end));
+		$weekList = $this->createWeek($start, $end);
+		$this->header = array_merge($this->header,$weekList);
 		array_push($this->header, "AVG");
 		array_push($this->header, "TOTAL");
 		array_push($this->data,$this->header);
 
 		$storeData = $this->createStoreData($start, $end);
+		//dd($storeData);
+		// 全店舗合計作る
+		array_push($this->data,$this->createSumData(count($weekList), $storeData));
 		foreach ($storeData as $storeId => $value) 
 		{
 			$sum = array_sum($value);
@@ -99,14 +103,41 @@ class Aggregate
 			$tmp = array_merge($this->status[$storeId],$value);
 			array_push($this->data,$tmp);
 		}
+// dd($this->data);
 		return $this;
+	}
+
+	private function createSumData($cnt, $storeData)
+	{
+		$data = array(
+			"999999999999",
+			"NARERUNDA",
+			"日本",
+			"全店舗合計",
+			);
+
+		$sumData = array();
+		for ($i=0; $i < $cnt; $i++) 
+		{ 
+			$sum = 0;
+			foreach ($storeData as $key => $value) 
+			{
+				$sum += $value[$i];
+			}
+			$sumData[] = $sum;
+		}
+
+		$sum = array_sum($sumData);
+		$avg = round($sum/count($sumData), 2);
+		array_push($sumData, $avg);
+		array_push($sumData, $sum);
+		$data = array_merge($data,$sumData);
+
+		return $data;
 	}
 
 	private function createStoreData($start, $end)
 	{
-		$tmp = explode("_", $this->fileName);
-		$targetMonth = (int)substr($tmp[1], 4, 2);
-
 		$storeData = array();
 		foreach ($this->foming as $year => $monthly) 
 		{
@@ -131,9 +162,6 @@ class Aggregate
 				// 抜けてる店舗を穴埋め
 				$storeDiff = array_diff($this->storeList, array_keys($store));
 				foreach ($storeDiff as $storeId) {
-					echo $dayCount;
-					echo $storeId;
-					echo $month;
 					for ($i=0; $i < $dayCount; $i++) { 
 						$storeData[$storeId][] = 0;
 					}
@@ -163,7 +191,7 @@ class Aggregate
 		return $list;
 	}
 
-	public function search($date, $start, $end)
+	private function search($date, $start, $end)
 	{
 		// $tmp = explode("_", $this->fileName);
 		// $tmp = explode(".", $tmp[1]);

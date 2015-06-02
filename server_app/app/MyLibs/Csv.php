@@ -53,6 +53,15 @@ class Csv
 		return $list;
 	}
 
+
+	public function cnvSjis($fileName)
+	{
+		$command = "iconv -f UTF-8 -t EUCJP ".$fileName." -o /tmp/euc.csv";
+		exec($command);	
+		$command = "iconv -f EUCJP -t SJIS /tmp/euc.csv -o /tmp/sjis.csv";
+		exec($command);	
+	}
+
 	public function read($fileName)
 	{
 		if (($handle = fopen($fileName, "r")) !== false) {
