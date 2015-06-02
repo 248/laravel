@@ -16,15 +16,28 @@
 // Route::get('contact', 'WelcomeController@contact');
 
 // Route::get('about', 'PagesController@about');
+Route::get('show', function()
+{
 
-Route::get('/', 'AggregateController@index');
+    $article = ['id' => 1, 'title' => "today's dialy", 'content' => "It's a sunny day."];
+    return Response::json($article);
+});
+Route::post('edit', function()
+{
+    $body = Input::all();
+    if (empty($body)) {
+        return App::abort(400);
+    }
+    return Response::json($body);
+});
+
+// Route::get('/', 'AggregateController@index');
+// Route::get('aggregate', 'AggregateController@index');
+// Route::get('aggregate/{id}', 'AggregateController@download');
+// Route::post('aggregate', 'AggregateController@search');
+
 // Route::resource('aggregate', 'AggregateController');
-Route::get('aggregate', 'AggregateController@index');
 // Route::get('aggregate/test', 'AggregateController@test');
-Route::get('aggregate/{id}', 'AggregateController@download');
-Route::post('aggregate', 'AggregateController@search');
-
-
 
 // Route::get('/', 'ArticlesController@index');  // root を記事一覧にします
 Route::resource('articles', 'ArticlesController');
