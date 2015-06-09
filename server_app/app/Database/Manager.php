@@ -1,5 +1,4 @@
-<?php 
-namespace App\Database;
+<?php namespace App\Database;
 
 use Doctrine\DBAL\DriverManager;
 use Illuminate\Config\Repository;

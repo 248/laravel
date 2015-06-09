@@ -1,6 +1,6 @@
 <?php namespace App\Providers;
 
-use App\Database\Manager as DB;
+use App\Database\Manager as DBAL;
 use Illuminate\Support\ServiceProvider;
 
 class ApplicationServiceProvider extends ServiceProvider {
@@ -23,7 +23,7 @@ class ApplicationServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->app->bindShared('dbal', function($app) {
-			return new DB($app['config']);
+			return new DBAL($app['config']);
 		}
 		);
 	}

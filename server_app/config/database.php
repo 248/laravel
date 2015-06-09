@@ -64,6 +64,15 @@ return [
 			'strict'    => false,
 		],
 
+		'dbal_mysql' => [
+			'driver'    => 'pdo_mysql',
+			'host'      => env('DB_HOST', 'localhost'),
+			'dbname'  => env('DB_DATABASE', 'forge'),
+			'user'  => env('DB_USERNAME', 'forge'),
+			'password'  => env('DB_PASSWORD', ''),
+			'charset'  => 'utf8',
+		],
+
 		'pgsql' => [
 			'driver'   => 'pgsql',
 			'host'     => env('DB_HOST', 'localhost'),
