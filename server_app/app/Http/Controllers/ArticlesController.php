@@ -18,11 +18,11 @@ class ArticlesController extends Controller {
 	}
 
 	public function index() {
-		$articles = Article::all();  //古いコード
+		// $articles = Article::all();  //古いコード
 		// $articles = Article::where('published_at', '<=', Carbon::now())->orderBy('published_at', 'asc')->get();
 		// $articles = Article::latest('published_at')->get();
 		
-		// $articles = Article::published()->orderBy('published_at', 'desc')->get();
+		$articles = Article::published()->orderBy('published_at', 'desc')->get();
 // $articles = array();
 
 		// $result = \DBAL::connection('dbal_mysql')->fetchAll("SELECT NOW() as now");

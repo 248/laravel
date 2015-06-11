@@ -110,4 +110,9 @@ class PagesController extends Controller {
 		echo $tmp->getResult();
 
 	}
+
+	public function db() 
+	{
+
+	}
 }

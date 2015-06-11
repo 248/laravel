@@ -148,7 +148,9 @@ return [
 		'Illuminate\Html\HtmlServiceProvider', // 追加
 		// 'Cartalyst\Sentry\SentryServiceProvider', // add
 		'App\Providers\CsvServiceProvider', // 追加
-		'App\Providers\ApplicationServiceProvider', // 追加
+		// 'App\Providers\ApplicationServiceProvider', // 追加
+		// 'Doctrine2Bridge\Doctrine2CacheBridgeServiceProvider', // add
+		// 'Doctrine2Bridge\Doctrine2BridgeServiceProvider', //add
 	],
 
 	/*
@@ -201,7 +203,7 @@ return [
         'Html' => 'Illuminate\Html\HtmlFacade',  // 追加
         // 'Sentry'  => 'Cartalyst\Sentry\Facades\Laravel\Sentry', // add
         'Csv'     => 'App\Facades\CsvFacade',
-        'DBAL' => 'App\Database\DatabaseFacade', // 追加
+        // 'DBAL' => 'App\Database\DatabaseFacade', // 追加
 
 	],
 

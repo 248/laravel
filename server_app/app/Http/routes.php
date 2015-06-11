@@ -17,6 +17,7 @@
 
 Route::get('about', 'PagesController@about');
 Route::get('proto', 'PagesController@proto');
+Route::get('db', 'PagesController@db');
 
 Route::get('show', function()
 {
