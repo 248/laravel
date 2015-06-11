@@ -39,3 +39,5 @@ chmod -R 777 server_app/storage/
   265  git commit -m "install laravel"
   266  git push origin master
 
+5.1でphp5.5.9以上を求められたので
+yum update php --enablerepo=remi-php55,remi
